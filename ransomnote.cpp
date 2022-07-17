@@ -10,62 +10,39 @@ class Solution
 public:
     bool canConstruct(string ransomNote, string magazine)
     {
-        map<char, int> mm;
-        map<char, int> mr;
+        if (ransomNote == "")
+        {
+            return true;
+        }
+
+        if (magazine.size() < ransomNote.size())
+        {
+            return false;
+        }
+
+        map<char, int> map;
+
         for (int i = 0; i < magazine.size(); i++)
         {
-            if (mm.count(magazine[i]))
-            {
-                mm[magazine[i]]++;
-            }
-            else
-            {
-                mm[magazine[i]] = 1;
-            }
+            map[magazine[i]]++;
         }
 
         for (int i = 0; i < ransomNote.size(); i++)
         {
-            if (mr.count(ransomNote[i]))
+            if (map[ransomNote[i]] < 1)
             {
-                mr[ransomNote[i]]++;
-            }
-            else
-            {
-                mr[ransomNote[i]] = 1;
-            }
-        }
-
-        for (int i = 0; i < ransomNote.size(); i++)
-        {
-            if(mr[ransomNote[i]] > mm[ransomNote[i]] ){
                 return false;
             }
+            else
+            {
+                map[ransomNote[i]]--;
+            }
         }
-        
 
         return true;
     }
 };
 
-
-class Solutiontwo {
-public:
-    bool canConstruct(string ransomNote, string magazine) {
-        int freq[26]={0};
-        for(int i=0;i<magazine.size();i++){
-            freq[int(magazine[i])-97]++;
-        }
-        for(int i=0;i<ransomNote.size();i++){
-            freq[int(ransomNote[i])-97]--;
-        }
-        for(int i=0;i<26;i++){
-            if(freq[i]<0)
-                return false;
-        }
-        return true;
-    }
-};
 
 int main()
 {
