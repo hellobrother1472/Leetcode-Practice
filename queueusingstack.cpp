@@ -3,137 +3,85 @@
 
 using namespace std;
 
-// I don't know why this answer does'nt work
-
-// class MyQueue
-// {
-// public:
-//     stack<int> st1;
-//     stack<int> st2;
-//     MyQueue()
-//     {
-//     }
-
-//     void push(int x)
-//     {
-//         st1.push(x);
-//     }
-
-//     int pop()
-//     {
-//         int x, ans;
-//         if (!st2.empty())
-//         {
-//             ans = st2.top();
-//             st2.pop();
-//         }
-//         else
-//         {
-//             while (!st1.empty())
-//             {
-//                 x = st1.top();
-//                 st1.pop();
-//                 st2.push(x);
-//             }
-//             ans = st2.top();
-//             st2.pop();
-//         }
-
-//         return ans;
-//     }
-
-//     int peek()
-//     {
-//         int x, ans;
-//         if (st2.empty())
-//         {
-//             ans = st2.top();
-//         }
-//         else
-//         {
-//             while (!st1.empty())
-//             {
-//                 x = st1.top();
-//                 st1.pop();
-//                 st2.push(x);
-//             }
-//             ans = st2.top();
-//         }
-
-//         return ans;
-//     }
-
-//     bool empty()
-//     {
-//         return (st1.size() + st2.size()) == 0;
-//     }
-// };
-
-// This is the correct one
-
 class MyQueue
 {
-     stack<int> st1, st2;
-
 public:
+     stack<int> st1;
+     stack<int> st2;
      MyQueue()
      {
      }
+
      void push(int x)
      {
           st1.push(x);
      }
+
      int pop()
      {
-          int x;
-          if (!st2.empty())
+          int store;
+          if (st2.top() != NULL)
           {
-               int x = st2.top();
+               store = st2.top();
                st2.pop();
-               return x;
           }
           else
           {
-               while (!st1.empty())
+               while (st1.top() != NULL)
                {
-                    x = st1.top();
+                    st2.push(st1.top());
                     st1.pop();
-                    st2.push(x);
                }
-               x = st2.top();
+               store = st2.top();
                st2.pop();
-               return x;
           }
+          return store;
      }
+
      int peek()
      {
-          int x;
-          if (!st2.empty())
+          int store;
+          if (st2.top() != NULL)
           {
-               x = st2.top();
-               return x;
+               store = st2.top();
           }
           else
           {
-               while (!st1.empty())
+               while (st1.top() != NULL)
                {
-                    x = st1.top();
+                    st2.push(st1.top());
                     st1.pop();
-                    st2.push(x);
                }
-               x = st2.top();
-               return x;
+               store = st2.top();
+               st2.pop();
           }
+          return store;
      }
+
      bool empty()
      {
-          return (st1.size() + st2.size()) == 0;
+          if (st1.top() == NULL && st2.top() == NULL)
+          {
+               return false;
+          }
+          else
+          {
+               return true;
+          }
      }
 };
 
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue* obj = new MyQueue();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->peek();
+ * bool param_4 = obj->empty();
+ */
 
 int main()
 {
 
-    return 0;
+     return 0;
 }
