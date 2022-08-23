@@ -68,17 +68,18 @@ public:
             return;
         }
 
+        // Looping through every element
         for (int i = ind; i < arr.size(); i++)
         {
-            if(target < 0){
+            if(target < 0){ // If the target is crossed then it is no need to check further
                 break;
             }
-            if (i > ind && arr[i] == arr[i-1] )
+            if (i > ind && arr[i] == arr[i-1] ) // If their is repetition then continue, we don't want this
             {
                 continue;
             }
             else{
-                
+                // after crossing all the ifs we add the value to ds and run the reccursive function and then pop it during backtracking.
                 ds.push_back(arr[i]);
                 rfunc(i+1, target - arr[i], arr, ans, ds);
                 ds.pop_back();
