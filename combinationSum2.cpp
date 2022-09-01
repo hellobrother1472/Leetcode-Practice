@@ -52,6 +52,7 @@ public:
     }
 };
 
+// This is more optimized approach as in here we are not checking for repetition, the repetition is avoided by design.
 class Solution2
 {
 public:
