@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -14,11 +15,12 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// This is reccursive solution.
 class Solution
 {
 public:
     void solve(vector<vector<int>> &ans, int level, TreeNode *root)
-    { 
+    {
         // base case if root is null then no need to go further just return
         if (root == NULL)
         {
@@ -54,6 +56,41 @@ public:
     {
         vector<vector<int>> ans;
         solve(ans, 0, root);
+        return ans;
+    }
+};
+
+// Solution using queue
+class Solution
+{
+public:
+    vector<vector<int>> levelOrder(TreeNode *root)
+    {
+        vector<vector<int>> ans;
+        if (root == NULL)
+        {
+            return ans;
+        }
+
+        queue<TreeNode *> q;
+        q.push(root);      // Push the root to the queue
+        while (!q.empty()) // Until the queue is empty traverse
+        {
+            // make a vector level and push the val to take the value and store it in level and then push the left and right tree node of the present node and then perform same thing one by one.
+            int size = q.size();
+            vector<int> level;
+            for (int i = 0; i < size; i++)
+            {
+                TreeNode *node = q.front();
+                q.pop();
+                if (node->left != NULL)
+                    q.push(node->left);
+                if (node->right != NULL)
+                    q.push(node->right);
+                level.push_back(node->val);
+            }
+            ans.push_back(level);
+        }
         return ans;
     }
 };
