@@ -14,36 +14,46 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-
-class Solution {
+class Solution
+{
 public:
-    void solve(vector<vector<int>>&ans,int level, TreeNode *root){
-        if(root == NULL){
+    void solve(vector<vector<int>> &ans, int level, TreeNode *root)
+    { 
+        // base case if root is null then no need to go further just return
+        if (root == NULL)
+        {
             return;
         }
 
-        if(ans.size()<level){
+        // if the index of level is not present in the ans array then make a ds vector and add the value to it and add it to the ans
+        if (ans.size() <= level || ans.size() == 0)
+        {
             vector<int> ds;
             ds.push_back(root->val);
             ans.push_back(ds);
         }
-        else{
-            if(count(ans[level].begin(), ans[level].end(), root->val)){
-                return;
-            }
-            else{
-                ans[level].push_back(root->val);
-            }
+        else
+        {
+            // If level matches the already exist level ds then add to it the val
+            ans[level].push_back(root->val);
         }
 
-        solve(ans,level+1,root->left);
-        solve(ans,level+1,root->right);
-        
+        // Then go to left tree and do levelorder(BFS)
+        if (root->left)
+        {
+            solve(ans, level + 1, root->left);
+        }
+        // Then go to right tree and do levelorder(BFS)
+        if (root->right)
+        {
+            solve(ans, level + 1, root->right);
+        }
     }
 
-    vector<vector<int>> levelOrder(TreeNode* root) {
+    vector<vector<int>> levelOrder(TreeNode *root)
+    {
         vector<vector<int>> ans;
-        solve(ans,0,root);
+        solve(ans, 0, root);
         return ans;
     }
 };
