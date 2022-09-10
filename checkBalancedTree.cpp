@@ -43,6 +43,27 @@ public:
     }
 };
 
+
+// Solution with less time complexity
+class Solution {
+public:
+    
+    int height(TreeNode* root)
+    {
+        if(!root) { return 0;}
+        return 1 + max(height(root->left), height(root->right));
+    }
+    bool isBalanced(TreeNode* root) {
+        
+        if(root == NULL) { return true; }
+        
+        int lh = height(root->left);
+        int rh = height(root->right);
+        
+        return (isBalanced(root->left) and isBalanced(root->right) and (abs(lh-rh) <= 1) );
+    }
+};
+
 int main()
 {
 
