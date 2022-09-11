@@ -50,7 +50,7 @@ public:
     }
 };
 
-// Dealing with the above problem here is the solution for it. We have to just ignore negetive numbers.
+// Dealing with the above problem here is the solution for it. We have to just ignore negetive numbers and return 0 instead of it.
 
 class Solution2 { 
 public:
