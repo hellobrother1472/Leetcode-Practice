@@ -143,7 +143,7 @@ public:
     }
 };
 
-// Just using queue and reversing on the spot
+// Just using queue and reversing on the spot on the basis of condition
 class Solution
 {
 public:
@@ -180,7 +180,7 @@ public:
     }
 };
 
-// Using the queue and just inserting in the level array on the spot on the basis of flag
+// Using the queue and just inserting in the level array on the spot accordingly on the basis of flag
 class Solution
 {
 public:
