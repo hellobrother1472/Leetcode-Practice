@@ -22,9 +22,7 @@ public:
             return;
 
         if (m[col][row].size() == 0)
-        {
             m[col][row].push_back(root->val);
-        }
 
         solve(row + 1, col - 1, m, root->left);
         solve(row + 1, col + 1, m, root->right);
