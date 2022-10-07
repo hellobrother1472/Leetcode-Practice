@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -88,6 +89,49 @@ public:
             return true;
         }
         return false;
+    }
+};
+
+class BSTIterator {
+public:
+    TreeNode*r;
+    // TreeNode*curr;
+    stack<TreeNode*>st;
+    
+    // On every next it will return ans and ready stack for next next() function.
+    int inorderTraverse(TreeNode *root)
+    {
+        TreeNode* temp = st.top();
+        int ans = temp->val;
+        st.pop();
+        if(temp->right != NULL){
+            temp = temp->right;
+            while (temp)
+            {
+                st.push(temp);
+                temp = temp->left;
+            }
+            
+        }
+        return ans;
+    }
+    
+    BSTIterator(TreeNode* root) {
+        r = root;
+        TreeNode*curr = root;
+        // Making the stack ready by making first element of inorder at st.top()
+        while(curr){
+            st.push(curr);
+            curr = curr->left;
+        }
+    }
+    
+    int next() {
+        return inorderTraverse(r);
+    }
+    
+    bool hasNext() {
+        return !st.empty();
     }
 };
 
