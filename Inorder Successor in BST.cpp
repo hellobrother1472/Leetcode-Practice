@@ -44,26 +44,27 @@ class Solution2
 private:
     /* data */
 public:
-    TreeNode* inorderSuccesor(TreeNode *root, TreeNode* x)
+    TreeNode *inorderSuccesor(TreeNode *root, TreeNode *x)
     {
-        TreeNode*curr = root;
-        TreeNode*prev = NULL;
-       while (curr && curr->val != x->val)
-        {
-            prev = curr;
-            if (x->val > curr->val)
-                curr = curr->right;
-            else
-                curr = curr->left;
-        }
+        // TreeNode*curr = root;
+        TreeNode *succesor = NULL;
 
-        if(curr->right == NULL && curr == prev->right){
-            return new TreeNode(-1);
+        while (root)
+        {
+            if (root->val <= x->val)
+            {
+                root = root->right;
+            }
+            else
+            {
+                // if(succesor&&root->val < succesor->val){
+                //     succesor = root;
+                // }
+                succesor = root;
+                root = root->left;
+            }
         }
-        if(curr->right == NULL && curr == prev->left){
-            return prev;
-        }
-        return root->right;
+        return succesor;
     }
 };
 
