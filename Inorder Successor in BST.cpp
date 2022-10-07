@@ -39,6 +39,8 @@ public:
     }
 };
 
+// Succesor is the pointer storing the address of node which have value just greater than the given node which can be the potential inorder succesor of the given node
+
 class Solution2
 {
 private:

@@ -13,6 +13,9 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// Find the root's left right most element and connect it with root. After doing that go to left.
+// If you found out that you have already pointed the pointer then remove it and print curr val.
+
 class Solution {
 public:
     vector<int> morrisTraversalInorder(TreeNode* root) {
@@ -24,17 +27,17 @@ public:
                 curr = curr->right;
             }
             else{
-                TreeNode*prev= curr->left;
-                while(prev->right && prev->right != curr){
-                    prev = prev->right;
+                TreeNode*temp= curr->left;
+                while(temp->right && temp->right != curr){
+                    temp = temp->right;
                 }
 
-                if(prev->right == NULL){
-                    prev->right = curr;
+                if(temp->right == NULL){
+                    temp->right = curr;
                     curr = curr->left;
                 }
                 else{
-                    prev->right = NULL;
+                    temp->right = NULL;
                     inorder.push_back(curr->val);
                     curr = curr->right;
                 }
@@ -55,18 +58,18 @@ public:
                 curr = curr->right;
             }
             else{
-                TreeNode*prev= curr->left;
-                while(prev->right && prev->right != curr){
-                    prev = prev->right;
+                TreeNode*temp= curr->left;
+                while(temp->right && temp->right != curr){
+                    temp = temp->right;
                 }
 
-                if(prev->right == NULL){
-                    prev->right = curr->right;
+                if(temp->right == NULL){
+                    temp->right = curr->right;
                     curr = curr->left;
                     preorder.push_back(curr->val);
                 }
                 else{
-                    prev->right = NULL;
+                    temp->right = NULL;
                     preorder.push_back(curr->val);
                     curr = curr->right;
                 }
