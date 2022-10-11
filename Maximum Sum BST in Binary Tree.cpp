@@ -44,7 +44,7 @@ public:
             sum = max(sum, root->val + lt.maxSum + rt.maxSum);
             return NodesValue((lt.maxSum+rt.maxSum+root->val), max(root->val,rt.leftMax), min(root->val,lt.rightMin) );
         }
-
+   
         return NodesValue(max(lt.maxSum,rt.maxSum),INT_MAX,INT_MIN);
     }
     int maxSumBST(TreeNode *root)
