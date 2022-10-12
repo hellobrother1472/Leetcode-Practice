@@ -45,6 +45,7 @@ public:
     int missingNumber(vector<int> &nums)
     {
         int n = nums.size();
+        // Return the sum of n numbers - the sum of array we are given.
         return ((n * (n + 1)) / 2) - accumulate(nums.begin(), nums.end(), 0);
     }
 };
