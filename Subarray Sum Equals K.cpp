@@ -6,7 +6,7 @@ using namespace std;
 
 // The brute force is simple, we just need to generate all sub-arrays, check the sum, and update the number of subarrays we found so far.
 
-// Optimized way is to use prefix concept
+// Optimized way is to use prefix concept 
 class Solution {
 public:
     int subarraySum(vector<int>& arr, int k) {
