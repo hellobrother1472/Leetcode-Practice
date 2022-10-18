@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -32,37 +30,29 @@ public:
         }
     }
 };
-class SolutionTwo
+
+// This logic is to store the min number whenever we get and subtract it from the present number to get profit if it exceeds final profit which we have we change the value of final profit and after the iteration we have our max value.
+class Solution
 {
 public:
     int maxProfit(vector<int> &prices)
     {
+        int min = INT_MAX;
         int profit = 0;
-        int pprofit = 0;
-        int min = 32600;
-        
+        int fprofit = 0;
         for (int i = 0; i < prices.size(); i++)
         {
-            if(prices[i]< min){
+            if (min > prices[i])
+            {
                 min = prices[i];
             }
-
-            pprofit = prices[i] - min;
-
-            if(profit < pprofit){
-                profit = pprofit;
+            profit = prices[i] - min;
+            if (profit > fprofit)
+            {
+                fprofit = profit;
             }
         }
-        
-
-        if (profit <= 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return profit;
-        }
+        return fprofit;
     }
 };
 
