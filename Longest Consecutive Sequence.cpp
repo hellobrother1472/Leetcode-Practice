@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// logic is to count on the basis of consicutiveness, if I get the element which is not consicutive I store the value and reset count and again follow the same process. This approach follows o(n)+O(nlogn).
+// logic is to count on the basis of consicutiveness, if I get the element which is not consicutive I store the value and reset count and again follow the same process. This approach follows o(n)+O(nlogn) .
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
