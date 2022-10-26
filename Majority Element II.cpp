@@ -37,6 +37,8 @@ public:
     }
 };
 
+// Using map is also another solution with linear time complexity but O(n) space complexity.
+
 int main()
 {
 
