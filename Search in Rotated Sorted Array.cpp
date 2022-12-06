@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// The algo is made by analusis of problem with diffrent test cases and edge cases. The intution is to move the start and end such that it fits in the pattern of searching.
+// The algo is made by analysis of problem with diffrent test cases and edge cases. The intution is to move the start and end such that it fits in the pattern of searching.
 class Solution
 {
 public:
@@ -15,49 +15,34 @@ public:
         {
             int mid = start + (end - start) / 2;
             if (nums[mid] == target)
-            {
                 return mid;
-            }
+                
             if (nums[start] == target)
-            {
                 return start;
-            }
+                
             if (nums[end] == target)
-            {
                 return end;
-            }
+                
             if (target > nums[start] && target < nums[end])
             {
                 if (nums[mid] < target)
-                {
                     start = mid + 1;
-                }
                 else
-                {
                     end = mid - 1;
-                }
             }
             else if (target > nums[start] && target > nums[end])
             {
                 if (target > nums[mid] && nums[mid] > nums[end])
-                {
                     start = mid + 1;
-                }
                 else
-                {
                     end = mid - 1;
-                }
             }
             else if (target < nums[start] && target < nums[end])
             {
                 if (target < nums[mid] && nums[mid] < nums[end])
-                {
                     end = mid - 1;
-                }
                 else
-                {
                     start = mid + 1;
-                }
             }
             else
             {
