@@ -2,6 +2,9 @@
 
 using namespace std;
 
+// Peak element is the element which is greater than it's neighbors
+// The main intution of O(log(n)) solution is that if we get the element which is peak then return it, if left item is greater than it then high = mid - 1 and if right is greater than it then low = mid +1.
+
 // O(nlog(n)+n)
 class Solution
 {
