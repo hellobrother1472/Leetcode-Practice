@@ -2,7 +2,7 @@
 using namespace std;
 
 // In this approach the intution is to store the indexes of chars which we don't want in the answer. And iterating second time for getting the answer.
-// The indexes we don't want are those parenthesis whose removal from the stack will make stack empty during the iteration (The outer ones).
+// The indexes we don't want or the indexes we are storing are those parenthesis whose removal from the stack will make stack empty during the iteration (The outer ones).
 // So top and bottom are the top of the stack and bottom of the stack. So the logic is that before the stack get's empty I am storing the bottom and the potential top. So at last after if statements I am checking if the stack is empty after the poping. If yes it means these are those indexes whose removal will make stack empty so I put it into the map.
 
 class Solution {
