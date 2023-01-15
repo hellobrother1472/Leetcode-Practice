@@ -37,12 +37,14 @@ public:
 
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
     {
-        if(list1 == NULL){
-			return list2;
-		}
-		if(list2 == NULL){
-			return list1;
-		}
+        if (list1 == NULL)
+        {
+            return list2;
+        }
+        if (list2 == NULL)
+        {
+            return list1;
+        }
         ListNode *p = list1;
         ListNode *q = list2;
         ListNode *sol = new ListNode();
@@ -107,9 +109,8 @@ public:
                     }
                     sol = t;
                 };
-                
+
                 p = p->next;
-                
             }
         }
 
@@ -160,6 +161,58 @@ public:
             }
         }
         return sol;
+    }
+};
+
+class Solution
+{
+public:
+    ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+    {
+        if (list1 == NULL)
+            return list2;
+        if (list2 == NULL)
+            return list1;
+        ListNode *i = list1;
+        ListNode *j = list2;
+        ListNode *newHead = new ListNode(0);
+        ListNode *tail = newHead;
+        while (list1 && list2)
+        {
+            ListNode *newNode;
+            if (list1->val > list2->val)
+            {
+                newNode = new ListNode(list2->val);
+                list2 = list2->next;
+            }
+            else
+            {
+                newNode = new ListNode(list1->val);
+                list1 = list1->next;
+            }
+            tail->next = newNode;
+            tail = newNode;
+        }
+        // if(list1){
+        //     while(list1){
+        //         ListNode* newNode = new ListNode(list1->val);
+        //         tail->next = newNode;
+        //         tail = newNode;
+        //         list1 = list1->next;
+        //     }
+        // }
+        // if(list2){
+        //     while(list2){
+        //         ListNode* newNode = new ListNode(list2->val);
+        //         tail->next = newNode;
+        //         tail = newNode;
+        //         list2 = list2->next;
+        //     }
+        // }
+        // above can be written in simple form
+        if (list1) tail->next = i;
+        if (list2) tail->next = j;
+        return newHead->next;
     }
 };
 
