@@ -183,6 +183,64 @@ public:
     }
 };
 
+// Clean iterative code
+class Solution {
+public:
+    int myAtoi(string s) {
+        
+        int i = 0, n = s.size(), sign = 1, ret = 0;
+        while (i < n && s[i] == ' ') // just skipping the leading spaces
+            ++i;
+
+        // Setting the sign
+        if (s[i] == '-')
+            sign = -1, ++i;
+        else if (s[i] == '+')
+            ++i;
+
+        // considering integers and editing the integer values on the go 
+        while (s[i] >= '0' && s[i] <= '9') {
+            int tmp = s[i++] - '0';
+            
+            if (ret > INT_MAX / 10 || ret == INT_MAX / 10 && tmp > 7)
+                return sign == 1 ? INT_MAX : INT_MIN;
+            ret = ret * 10 + tmp;
+        }
+
+        return sign * ret;
+    }
+};
+
+// Clean reccursive code
+class Solution {
+    int myAtoi(string s, int sign, int i, int result) {
+
+        if (i >= s.size() || s[i] < '0' || s[i] > '9')
+            return sign * result;
+
+        int tmp = s[i] - '0';
+        if (result > INT_MAX / 10 || result == INT_MAX / 10 && tmp > 7)
+            return sign > 0 ? INT_MAX : INT_MIN;
+
+        return myAtoi(s, sign, i + 1, result * 10 + tmp);
+    }
+
+public:
+    int myAtoi(string s) {
+        
+        int i = 0, n = s.size(), sign = 1;
+        while (i < n && s[i] == ' ')
+            ++i;
+
+        if (s[i] == '-')
+            sign = -1, ++i;
+        else if (s[i] == '+')
+            ++i;
+
+        return myAtoi(s, sign, i, 0);
+    }
+};
+
 int main()
 {
     return 0;
