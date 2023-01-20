@@ -131,6 +131,11 @@ public:
 
 // Reccursive approach
 // Approach is similar to above just make a string according to conditions and then remove initial zeros and then analyse and give answer.
+// if the s[i] is less then ascii code 58 except the ascii code for "+", "-"," " or if i exeeds the length of s then just return.
+// As I want int value so I am stoping the iteration even if "." comes as I want element of before that.
+// Their is a num variable which is their to record when the numbers get started. As soon as we get our first number it becomes true.
+// so if we don't get our number and then we are getting -, + or " " then I am considering it but if we get our num and then we are getting these I am returning.
+
 class Solution {
 public:
     string ans = "";
@@ -153,10 +158,10 @@ public:
             return;
         }
 
-        if(s[i] == ' ') {
+        if(s[i] == ' ') { // So if num false the ignoring all the spaces
             getStr(s,i+1);
         }
-        else{
+        else{ // otherwise accepting the values
             ans += s[i];
             num = true;
             getStr(s,i+1);
@@ -164,10 +169,10 @@ public:
     }
     int myAtoi(string s) {
         if(s.length() == 0) return 0;
-        getStr(s,0);
-        ans = removeInitZero(ans);
-        if(ans.length() == 0 || ans[ans.length()-1] == '-' || ans[ans.length()-1] == '+') return 0;
-        if(ans.length()>= 12){
+        getStr(s,0); // here I got the answer in string form
+        ans = removeInitZero(ans); // removing the initial zeros
+        if(ans.length() == 0 || ans[ans.length()-1] == '-' || ans[ans.length()-1] == '+') return 0; // some conditions of empty answer
+        if(ans.length()>= 12){ // now if the length is >=12 still after removing zero it means it is not int so return intmax or intmin
             if(ans[0] == '-') return INT_MIN;
             return INT_MAX;
         }
