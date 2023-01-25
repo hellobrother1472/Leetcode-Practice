@@ -52,7 +52,7 @@ public:
     }
 };
 
-// This is more optimized approach as in here we are not checking for repetition, the repetition is avoided by design.
+// This is more optimized approach as in here we are not checking for repetition, the repetition is avoided by design. For avoiding repetition we are using for loop to skip those elements which repeat itself. Condition is such that if the element is equal to it's previous then just 
 class Solution2
 {
 public:
@@ -72,21 +72,21 @@ public:
         // Looping through every element
         for (int i = ind; i < arr.size(); i++)
         {
-            if(target < 0){ // If the target is crossed then it is no need to check further
+            if (target < 0)
+            { // If the target is crossed then it is no need to check further
                 break;
             }
-            if (i > ind && arr[i] == arr[i-1] ) // If their is repetition then continue, we don't want this
+            if (i > ind && arr[i] == arr[i - 1]) // If their is repetition then continue, we don't want this
             {
                 continue;
             }
-            else{
+            else
+            {
                 // after crossing all the ifs we add the value to ds and run the reccursive function and then pop it during backtracking.
                 ds.push_back(arr[i]);
-                rfunc(i+1, target - arr[i], arr, ans, ds);
+                rfunc(i + 1, target - arr[i], arr, ans, ds);
                 ds.pop_back();
             }
-           
-         
         }
     }
 
@@ -96,6 +96,33 @@ public:
         vector<vector<int>> ans;
         vector<int> ds;
         rfunc(0, target, candidates, ans, ds);
+        return ans;
+    }
+};
+
+class Solution3
+{
+public:
+    void helper(vector<int> &candidates, int target, int sum, vector<int> &ds, vector<vector<int>> &ans, int id)
+    {
+        if (sum > target) return;
+        if (sum == target) ans.push_back(ds);
+        for (int i = id; i < candidates.size(); i++)
+        {
+            if (i != id && candidates[i] == candidates[i - 1]) continue;
+            sum += candidates[i];
+            ds.push_back(candidates[i]);
+            helper(candidates, target, sum, ds, ans, i + 1);
+            sum -= candidates[i];
+            ds.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int> &candidates, int target)
+    {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> ans;
+        vector<int> ds;
+        helper(candidates, target, 0, ds, ans, 0);
         return ans;
     }
 };
