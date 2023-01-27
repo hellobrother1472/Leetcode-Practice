@@ -100,7 +100,8 @@ public:
             ans.push_back(board);
             return;
         }
-
+        // If it gets no place to keep queen the for loop ends and returns automatically and ans is not updated.
+        // Just normal adding value, doing reccursion and removing that value.
         for (int row = 0; row < n; row++)
         {
             if(leftRow[row] == 0 && lowerDiagonal[row+col] == 0 && upperDiagonal[n-1+col-row] == 0){
@@ -122,7 +123,7 @@ public:
         vector<vector<string>> ans;
         vector<string> board(n);
         string s(n, '.');
-        vector<int> leftRow(n,0) , upperDiagonal(2*n-1,0), lowerDiagonal(2*n-1,0);
+        vector<int> leftRow(n,0) , upperDiagonal(2*n-1,0), lowerDiagonal(2*n-1,0); // we are using this to use as map as we place the queen and update the values so that we can check if the present box does not lie in the restricted region.
         for (int i = 0; i < n; i++)
         {
             board[i] = s;
