@@ -1,6 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Using Heap solution
+// First I am storing the frequency in map, then using pair ds I am putting the frequency and character in pair, frequency is made pair.first as heap sort on basis of pair.first.
+// That just printing the elements on the top of heap (element with max frequency) and then poping.
+class Solution {
+public:
+    string frequencySort(string s) {
+        priority_queue<pair<int, char>> maxHeap;
+        unordered_map<char,int> mp;
+        for(int i= 0 ; i < s.size(); i++){
+            mp[s[i]]++;
+        }
+
+        for(auto i = mp.begin(); i != mp.end(); i++){
+            pair<int,char>p;
+            p.first = i->second;
+            p.second = i->first;
+
+            maxHeap.push(p);
+        }
+
+        string ans = "";
+        while(!maxHeap.empty()){
+            for(int i = 0; i < maxHeap.top().first; i++) ans += maxHeap.top().second;
+            maxHeap.pop();
+        }
+        return ans;
+    }
+};
+
 // Logic for this approach is explained in second class below
 class Solution
 {
@@ -82,6 +111,8 @@ public:
         return ans;
     }
 };
+
+
 
 int main()
 {
