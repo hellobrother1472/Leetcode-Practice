@@ -28,7 +28,7 @@ public:
 };
 
 // Reccursive 2 - Replaces size = end - start to cuts[j+1]-cuts[i-1] (Try on copy)
-
+// Because jha prr bhi abhi i hai usse pichle i prr pichla cut lga hoga aise hi j ke liye bhi that's why size is cuts[j+1]-cuts[i-1]
 class Solution {
 private:
     int helper(vector<int>& cuts, int i,int j) {
