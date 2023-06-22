@@ -11,7 +11,7 @@ private:
         long profit;
         
         if(buy==0){// We can buy the stock
-            profit = max(0+helper(Arr,ind+1,0,n,dp,fee), -Arr[ind] + helper(Arr,ind+1,1,n,dp,fee));
+            profit = max(0+helper(Arr,ind+1,0,n,dp,fee), -Arr[ind] + helper(Arr,ind+1,1,n,dp,fee)); // Jab aage ka profit aayega tbb apne app hi arr[ind] minus ho jaiga.
         }
         
         if(buy==1){// We can sell the stock
