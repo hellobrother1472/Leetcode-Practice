@@ -39,7 +39,7 @@ public:
     }
 };
 
-// Some space optimization in dp itself by observing that i1 + j1 = i2 + j2, so we don't need 4 variables we need only three fourth can be calculated if we know other three.
+// Some space optimization in dp itself by observing that i1 + j1 = i2 + j2 because every time both moves one step and they both start from a same point, so we don't need 4 variables we need only three fourth can be calculated if we know other three.
 // Removing j2
 class Solution {
 private:
