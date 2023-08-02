@@ -62,6 +62,35 @@ public:
     }
 };
 
+// Mark the taken element going further and during backtacking remove the marking
+class Solution {
+private:
+    void helper(vector<int>& nums, int n, vector<vector<int>>&ans,vector<int>&temp){
+        if(temp.size() == n){
+            ans.push_back(temp);
+            return;
+        }
+        for(int i = 0 ;i < n; i++){
+            if(nums[i] != -11){
+                int val = nums[i];
+                temp.push_back(nums[i]);
+                nums[i] = -11;
+                helper(nums,n,ans,temp);
+                nums[i] = val;
+                temp.pop_back();
+            }            
+        }
+    }
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>>ans;
+        vector<int>temp;
+        helper(nums,n,ans,temp);
+        return ans;
+    }
+};
+
 
 
 int main()
