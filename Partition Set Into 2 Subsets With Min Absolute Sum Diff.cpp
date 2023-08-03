@@ -146,7 +146,7 @@ int minSubsetSumDifference(vector<int> &arr, int n)
 {
 
     int totSum = 0;
-
+    // Finded the total sum
     for (int i = 0; i < n; i++)
     {
         totSum += arr[i];
@@ -154,11 +154,13 @@ int minSubsetSumDifference(vector<int> &arr, int n)
 
     vector<vector<int>> dp(n, vector<int>(totSum + 1, -1));
 
+    // Checking for all the sums possible if they are possible or not. Filling the DP table.
     for (int i = 0; i <= totSum; i++)
     {
         bool dummy = subsetSumUtil(n - 1, i, arr, dp);
     }
 
+    // Iterating the last column and according to possiblity of sum we find the other and their absolute difference and then we try to minimize it.
     int mini = 1e9;
     for (int i = 0; i <= totSum; i++)
     {
