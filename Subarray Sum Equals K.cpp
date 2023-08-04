@@ -4,7 +4,8 @@
 
 using namespace std;
 
-// If the array given has distinct element.
+// If the array given has non negetive.
+// DP signifies in how many ways we can make the remaining currSum from the remaining array
 // Reccursive
 int mod = 1e9 + 7;
 
