@@ -4,6 +4,44 @@
 
 using namespace std;
 
+// If the array given has distinct element.
+// Reccursive
+int mod = 1e9 + 7;
+
+int helper(vector<int>& nums, int k, int currSum, int i){
+    if(i == nums.size()){
+        if(currSum == k) return 1;
+        return 0;
+    }
+    return ((helper(nums,k,currSum+nums[i],i+1) % mod) + (helper(nums,k,currSum,i+1) % mod)) % mod;
+}
+
+int findWays(vector<int>& arr, int k)
+{
+	return helper(arr,k,0,0) % mod;
+}
+
+// DP
+int mod = 1e9 + 7;
+
+int helper(vector<int>& nums, int k, int currSum, int i,vector<vector<int>>&dp){
+    if(i == nums.size()){
+        if(currSum == k) return 1;
+        return 0;
+    }
+	if(currSum > k) return 0;
+	if(dp[i][currSum] != -1) return dp[i][currSum];
+    return dp[i][currSum] = ((helper(nums,k,currSum+nums[i],i+1,dp) % mod) + (helper(nums,k,currSum,i+1,dp) % mod)) % mod;
+}
+
+int findWays(vector<int>& arr, int k)
+{
+	int n = arr.size();
+	vector<vector<int>>dp(n+1,vector<int>(k+1,-1));
+	return helper(arr,k,0,0,dp) % mod;
+}
+
+
 // The brute force is simple, we just need to generate all sub-arrays, check the sum, and update the number of subarrays we found so far.
 
 // Optimized way is to use prefix concept 
