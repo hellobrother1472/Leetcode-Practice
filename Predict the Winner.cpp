@@ -10,6 +10,7 @@ using namespace std;
 // If it is Player 2's turn (turn=false), then they would want to minimize Player 1's score, so the function calculates the score for both choices and returns the minimum of the two.
 // So if you make the decision tree then you will realize that when the result is positive it means player one's choices create score greater than the negetive (player two's score) which means player one can win
 // But if not then it means player 1 will not win
+// Basically we are finding out the difference in the score of player 1 and 2 so obviously if the player 1 has to win and has higher score then it means that final solution will be greater than zero.
 
 class Solution {
 private:
